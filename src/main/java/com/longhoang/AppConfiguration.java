@@ -1,5 +1,9 @@
 package com.longhoang;
 
+import com.longhoang.repository.PostRepository;
+import com.longhoang.repository.PostRepositoryImpl;
+import com.longhoang.services.PostService;
+import com.longhoang.services.PostServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -78,6 +82,16 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
+    }
+
+    @Bean
+    public PostRepository postRepository() {
+        return new PostRepositoryImpl();
+    }
+
+    @Bean
+    public PostService postService() {
+        return new PostServiceImpl();
     }
 
 }
